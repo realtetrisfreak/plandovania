@@ -43,7 +43,7 @@
       </property>
       <widget class="QWidget" name="tab_welcome">
        <attribute name="title">
-        <string>Welcome</string>
+        <string>Import a Game</string>
        </attribute>
        <layout class="QGridLayout" name="welcome_layout">
         <property name="leftMargin">
@@ -58,7 +58,7 @@
         <property name="bottomMargin">
          <number>0</number>
         </property>
-        <item row="3" column="2">
+        <!-- <item row="3" column="2">
          <widget class="QPushButton" name="intro_play_multiworld_button">
           <property name="font">
            <font>
@@ -70,21 +70,21 @@
            <string>Play a multiworld</string>
           </property>
          </widget>
-        </item>
-        <item row="3" column="0">
-         <widget class="QPushButton" name="intro_play_existing_button">
+        </item> -->
+        <item row="3" column="1">
+         <widget class="QPushButton" name="import_game_file_button">
           <property name="font">
            <font>
-            <pointsize>12</pointsize>
+            <pointsize>14</pointsize>
             <bold>true</bold>
            </font>
           </property>
           <property name="text">
-           <string>Import a game</string>
+           <string>Import game file</string>
           </property>
          </widget>
         </item>
-        <item row="3" column="1">
+        <!-- <item row="3" column="1">
          <widget class="QPushButton" name="intro_play_solo_button">
           <property name="font">
            <font>
@@ -96,14 +96,11 @@
            <string>Play a new solo game</string>
           </property>
          </widget>
-        </item>
+        </item> -->
         <item row="0" column="0" colspan="3">
          <widget class="QLabel" name="intro_label">
           <property name="text">
-           <string>Welcome to Randovania {version}, a randomizer for a multitude of games.</string>
-          </property>
-          <property name="textFormat">
-           <enum>Qt::TextFormat::MarkdownText</enum>
+           <string>Welcome to Plandovania for Metroid Dread, a program for exporting romhacks and plandos ("planned randomizers").</string>
           </property>
           <property name="scaledContents">
            <bool>false</bool>
@@ -133,8 +130,8 @@
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
-          <property name="textFormat">
-           <enum>Qt::TextFormat::MarkdownText</enum>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Drag and drop your pre-made .rdvgame file here. Then, export a mod data package, which will load up onto your modded Switch or your emulator. You can also start by clicking the "Import game file" button below.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
           <property name="wordWrap">
            <bool>true</bool>
@@ -192,7 +189,7 @@
         <string>Games</string>
        </attribute>
       </widget>
-      <widget class="QWidget" name="tab_play_existing">
+      <!-- <widget class="QWidget" name="tab_play_existing">
        <attribute name="title">
         <string>Import Game</string>
        </attribute>
@@ -257,7 +254,7 @@
         <item>
          <widget class="QLabel" name="import_game_file_label">
           <property name="text">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If they've shared a spoiler file instead, you can import it directly. This skips the generation step. You can also drag and drop the file into Randovania.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;If you have an .rdvgame file, you can import it directly. This skips the generation step. You can also drag and drop the file into Randovania.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
           <property name="wordWrap">
            <bool>true</bool>
@@ -356,7 +353,7 @@ For more information, check [Randovania Help](help://tab_multiworld)!</string>
          </widget>
         </item>
        </layout>
-      </widget>
+      </widget> -->
      </widget>
     </item>
     <item>
@@ -455,7 +452,7 @@ For more information, check [Randovania Help](help://tab_multiworld)!</string>
     <addaction name="menu_action_previously_generated_games"/>
     <addaction name="menu_action_log_files_directory"/>
     <addaction name="separator"/>
-    <addaction name="menu_action_login_window"/>
+    <!-- <addaction name="menu_action_login_window"/> -->
     <addaction name="menu_action_open_auto_tracker"/>
     <addaction name="separator"/>
     <addaction name="separator"/>
@@ -501,7 +498,7 @@ For more information, check [Randovania Help](help://tab_multiworld)!</string>
      <addaction name="menu_action_visual_generation_alert"/>
     </widget>
     <addaction name="menu_action_dark_mode"/>
-    <addaction name="menu_action_show_multiworld_banner"/>
+    <!-- <addaction name="menu_action_show_multiworld_banner"/> -->
     <addaction name="menu_action_experimental_settings"/>
     <addaction name="menu_alert_when_generation_completes"/>
     <addaction name="menu_action_automatic_reporting"/>
@@ -520,15 +517,15 @@ For more information, check [Randovania Help](help://tab_multiworld)!</string>
     <addaction name="menu_action_dependencies"/>
     <addaction name="menu_action_about"/>
    </widget>
-   <widget class="QMenu" name="menu_create">
+   <!-- <widget class="QMenu" name="menu_create">
     <property name="title">
      <string>Create</string>
     </property>
     <addaction name="menu_action_async_race"/>
-   </widget>
+   </widget> -->
    <addaction name="menu_open"/>
    <addaction name="menu_edit"/>
-   <addaction name="menu_create"/>
+   <!-- <addaction name="menu_create"/> -->
    <addaction name="menu_preferences"/>
    <addaction name="menu_help"/>
   </widget>
@@ -564,11 +561,11 @@ For more information, check [Randovania Help](help://tab_multiworld)!</string>
     <string>Automatic Item Tracker</string>
    </property>
   </action>
-  <action name="menu_action_login_window">
+  <!-- <action name="menu_action_login_window">
    <property name="text">
     <string>Login</string>
    </property>
-  </action>
+  </action> -->
   <action name="menu_action_dark_mode">
    <property name="checkable">
     <bool>true</bool>
@@ -577,14 +574,14 @@ For more information, check [Randovania Help](help://tab_multiworld)!</string>
     <string>Dark Mode</string>
    </property>
   </action>
-  <action name="menu_action_show_multiworld_banner">
+  <!-- <action name="menu_action_show_multiworld_banner">
    <property name="checkable">
     <bool>true</bool>
    </property>
    <property name="text">
     <string>Show Multiworld Banner</string>
    </property>
-  </action>
+  </action> -->
   <action name="menu_action_previously_generated_games">
    <property name="text">
     <string>Previously generated games</string>
@@ -666,11 +663,11 @@ For more information, check [Randovania Help](help://tab_multiworld)!</string>
     <string>Visual Taskbar Alert</string>
    </property>
   </action>
-  <action name="menu_action_async_race">
+  <!-- <action name="menu_action_async_race">
    <property name="text">
     <string>Async Race</string>
    </property>
-  </action>
+  </action> -->
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>

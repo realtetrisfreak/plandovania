@@ -1,3 +1,9 @@
+# Important
+This fork contains an experimental branch that isn't affiliated with or endorsed by Randovania.
+Experimental branch is intended for use in [Plandovania](https://github.com/realtetrisfreak/plandovania/).
+
+---
+
 <!-- The Begin and End comments throughout this document are used in order to pull specific sections of the readme into the main GUI window at runtime. -->
 
 # Randovania

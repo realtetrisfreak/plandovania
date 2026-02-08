@@ -57,13 +57,13 @@ class OnlineInteractions(QtWidgets.QWidget):
         self.options = options
 
         # Signals
-        main_window.browse_sessions_button.clicked.connect(self._browse_for_session)
-        main_window.host_new_game_button.clicked.connect(self._host_game_session)
-        main_window.browse_async_races_button.clicked.connect(self._browse_async_races)
+        # main_window.browse_sessions_button.clicked.connect(self._browse_for_session)
+        # main_window.host_new_game_button.clicked.connect(self._host_game_session)
+        # main_window.browse_async_races_button.clicked.connect(self._browse_async_races)
 
         # Menu Bar
-        main_window.menu_action_login_window.triggered.connect(self._action_login_window)
-        main_window.menu_action_async_race.triggered.connect(self._action_create_async_race)
+        # main_window.menu_action_login_window.triggered.connect(self._action_login_window)
+        # main_window.menu_action_async_race.triggered.connect(self._action_create_async_race)
 
     async def _base_browse(
         self,

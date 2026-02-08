@@ -147,13 +147,13 @@ class MainWindow(WindowManager, BackgroundTaskMixin, Ui_MainWindow):
         self.status_bar.addPermanentWidget(self.progress_bar)
         self.status_bar.addPermanentWidget(self.stop_background_process_button)
 
-        self.setWindowTitle(f"Randovania {VERSION}")
+        self.setWindowTitle(f"Plandovania {VERSION}")
         self._is_preview_mode = preview
         self.setAcceptDrops(True)
         common_qt_lib.set_default_window_icon(self)
 
         self.setup_welcome_text()
-        self.browse_racetime_label.setText(self.browse_racetime_label.text().replace("color:#0000ff;", ""))
+        # self.browse_racetime_label.setText(self.browse_racetime_label.text().replace("color:#0000ff;", ""))
 
         self._preset_manager = preset_manager
         self.network_client = network_client
@@ -174,19 +174,19 @@ class MainWindow(WindowManager, BackgroundTaskMixin, Ui_MainWindow):
         self.InitPostShowSignal.connect(self.initialize_post_show)
         self.main_tab_widget.currentChanged.connect(self._on_main_tab_changed)
 
-        self.intro_play_solo_button.clicked.connect(partial(self._set_main_tab, self.tab_game_list))
-        self.intro_play_existing_button.clicked.connect(partial(self._set_main_tab, self.tab_play_existing))
-        self.intro_play_multiworld_button.clicked.connect(partial(self._set_main_tab, self.tab_multiworld))
+        # self.intro_play_solo_button.clicked.connect(partial(self._set_main_tab, self.tab_game_list))
+        # self.intro_play_existing_button.clicked.connect(partial(self._set_main_tab, self.tab_play_existing))
+        # self.intro_play_multiworld_button.clicked.connect(partial(self._set_main_tab, self.tab_multiworld))
 
-        self.import_permalink_button.clicked.connect(self._import_permalink)
+        # self.import_permalink_button.clicked.connect(self._import_permalink)
         self.import_game_file_button.clicked.connect(self._import_spoiler_log)
-        self.browse_racetime_button.clicked.connect(self._browse_racetime)
+        # self.browse_racetime_button.clicked.connect(self._browse_racetime)
 
         self.background_tasks_button_lock_signal.connect(self.enable_buttons_with_background_tasks)
         self.progress_update_signal.connect(self.update_progress)
         self.stop_background_process_button.clicked.connect(self.stop_background_process)
 
-        self.multiworld_intro_label.linkActivated.connect(self.open_app_navigation_link)
+        # self.multiworld_intro_label.linkActivated.connect(self.open_app_navigation_link)
 
         self.set_games_selector_visible(True)
 
@@ -298,7 +298,7 @@ class MainWindow(WindowManager, BackgroundTaskMixin, Ui_MainWindow):
         self.menu_action_timeout_generation_after_a_time_limit.triggered.connect(self._on_generate_time_limit_change)
         self.menu_action_generate_in_another_process.triggered.connect(self._on_generate_in_another_process_change)
         self.menu_action_dark_mode.triggered.connect(self._on_menu_action_dark_mode)
-        self.menu_action_show_multiworld_banner.triggered.connect(self._on_menu_action_show_multiworld_banner)
+        # self.menu_action_show_multiworld_banner.triggered.connect(self._on_menu_action_show_multiworld_banner)
         self.menu_action_experimental_settings.triggered.connect(self._on_menu_action_experimental_settings)
         self.menu_action_audible_generation_alert.triggered.connect(self._on_menu_action_audible_generation_alert)
         self.menu_action_visual_generation_alert.triggered.connect(self._on_menu_action_visual_generation_alert)
@@ -378,8 +378,8 @@ class MainWindow(WindowManager, BackgroundTaskMixin, Ui_MainWindow):
     def refresh_game_list(self) -> None:
         for game, game_elements in self._play_game_elements.items():
             game_elements.tile.setVisible(game.data.development_state.can_view())
-            game_elements.multi_banner.setVisible(self._options.show_multiworld_banner)
-            game_elements.multi_icon.setVisible(self._options.show_multiworld_banner)
+            # game_elements.multi_banner.setVisible(self._options.show_multiworld_banner)
+            # game_elements.multi_icon.setVisible(self._options.show_multiworld_banner)
 
         for game_menu in self.game_menus:
             self.menu_open.removeAction(game_menu.menuAction())
@@ -442,7 +442,7 @@ class MainWindow(WindowManager, BackgroundTaskMixin, Ui_MainWindow):
         self.online_interactions = OnlineInteractions(
             self, self.preset_manager, self.network_client, self, self._options
         )
-        self.game_connection_button.clicked.connect(self.open_game_connection_window)
+        # self.game_connection_button.clicked.connect(self.open_game_connection_window)
 
         logging.info("Will update for modified options")
         with self._options:
@@ -503,20 +503,20 @@ class MainWindow(WindowManager, BackgroundTaskMixin, Ui_MainWindow):
         if layout is not None:
             self.open_game_details(layout)
 
-    @asyncSlot()
-    async def _browse_racetime(self) -> None:
-        monitoring.metrics.incr(key="gui_browse_racetime_opened")
-        from randovania.gui.dialog.racetime_browser_dialog import RacetimeBrowserDialog
+    # @asyncSlot()
+    # async def _browse_racetime(self) -> None:
+    #     monitoring.metrics.incr(key="gui_browse_racetime_opened")
+    #     from randovania.gui.dialog.racetime_browser_dialog import RacetimeBrowserDialog
 
-        dialog = RacetimeBrowserDialog()
-        if not await dialog.refresh():
-            return
-        result = await async_dialog.execute_dialog(dialog)
-        if result == QtWidgets.QDialog.DialogCode.Accepted:
-            monitoring.metrics.incr(key="gui_browse_racetime_accepted")
-            await self.generate_seed_from_permalink(dialog.permalink)
-        else:
-            monitoring.metrics.incr(key="gui_browse_racetime_cancelled")
+    #     dialog = RacetimeBrowserDialog()
+    #     if not await dialog.refresh():
+    #         return
+    #     result = await async_dialog.execute_dialog(dialog)
+    #     if result == QtWidgets.QDialog.DialogCode.Accepted:
+    #         monitoring.metrics.incr(key="gui_browse_racetime_accepted")
+    #         await self.generate_seed_from_permalink(dialog.permalink)
+    #     else:
+    #         monitoring.metrics.incr(key="gui_browse_racetime_cancelled")
 
     def open_game_details(self, layout: LayoutDescription, players: list[str] | None = None):
         self.GameDetailsSignal.emit(LayoutWithPlayers(layout, players))
@@ -537,58 +537,58 @@ class MainWindow(WindowManager, BackgroundTaskMixin, Ui_MainWindow):
         if layout is not None:
             self.open_game_details(layout)
 
-    # Releases info
-    async def request_new_data(self):
-        from randovania.interface_common import github_releases_data
+    # # Releases info
+    # async def request_new_data(self):
+    #     from randovania.interface_common import github_releases_data
 
-        await self._on_releases_data(await github_releases_data.get_releases())
+    #     await self._on_releases_data(await github_releases_data.get_releases())
 
-    async def _on_releases_data(self, releases: list[dict] | None):
-        current_version = version_lib.current_version()
-        last_changelog = self._options.last_changelog_displayed
+    # async def _on_releases_data(self, releases: list[dict] | None):
+    #     current_version = version_lib.current_version()
+    #     last_changelog = self._options.last_changelog_displayed
 
-        (all_change_logs, new_change_logs, version_to_display) = update_checker.versions_to_display_for_releases(
-            current_version, last_changelog, releases
-        )
+    #     (all_change_logs, new_change_logs, version_to_display) = update_checker.versions_to_display_for_releases(
+    #         current_version, last_changelog, releases
+    #     )
 
-        if version_to_display is not None:
-            self.display_new_version(version_to_display)
+    #     if version_to_display is not None:
+    #         self.display_new_version(version_to_display)
 
-        if all_change_logs:
-            self.all_change_logs = all_change_logs
-            self.menu_action_changelog.setVisible(True)
+    #     if all_change_logs:
+    #         self.all_change_logs = all_change_logs
+    #         self.menu_action_changelog.setVisible(True)
 
-        if new_change_logs:
-            from randovania.gui.lib.scroll_message_box import ScrollMessageBox
+    #     if new_change_logs:
+    #         from randovania.gui.lib.scroll_message_box import ScrollMessageBox
 
-            message_box = ScrollMessageBox.create_new(
-                self,
-                QtWidgets.QMessageBox.Icon.Information,
-                "What's new",
-                "\n".join(new_change_logs),
-                QtWidgets.QMessageBox.StandardButton.Ok,
-            )
-            message_box.label.setTextFormat(QtCore.Qt.TextFormat.MarkdownText)
-            message_box.scroll_area.setMinimumSize(500, 300)
-            await async_dialog.execute_dialog(message_box)
+    #         message_box = ScrollMessageBox.create_new(
+    #             self,
+    #             QtWidgets.QMessageBox.Icon.Information,
+    #             "What's new",
+    #             "\n".join(new_change_logs),
+    #             QtWidgets.QMessageBox.StandardButton.Ok,
+    #         )
+    #         message_box.label.setTextFormat(QtCore.Qt.TextFormat.MarkdownText)
+    #         message_box.scroll_area.setMinimumSize(500, 300)
+    #         await async_dialog.execute_dialog(message_box)
 
-            with self._options as options:
-                options.last_changelog_displayed = current_version
+    #         with self._options as options:
+    #             options.last_changelog_displayed = current_version
 
-    def display_new_version(self, version: update_checker.VersionDescription):
-        if self.menu_new_version is None:
-            self.menu_new_version = QtGui.QAction("", self)
-            self.menu_new_version.triggered.connect(self.open_version_link)
-            self.menu_bar.addAction(self.menu_new_version)
+    # def display_new_version(self, version: update_checker.VersionDescription):
+    #     if self.menu_new_version is None:
+    #         self.menu_new_version = QtGui.QAction("", self)
+    #         self.menu_new_version.triggered.connect(self.open_version_link)
+    #         self.menu_bar.addAction(self.menu_new_version)
 
-        self.menu_new_version.setText(f"New version available: {version.tag_name}")
-        self._current_version_url = version.html_url
+    #     self.menu_new_version.setText(f"New version available: {version.tag_name}")
+    #     self._current_version_url = version.html_url
 
-    def open_version_link(self):
-        if self._current_version_url is None:
-            raise RuntimeError("Called open_version_link, but _current_version_url is None")
+    # def open_version_link(self):
+    #     if self._current_version_url is None:
+    #         raise RuntimeError("Called open_version_link, but _current_version_url is None")
 
-        QtGui.QDesktopServices.openUrl(QUrl(self._current_version_url))
+    #     QtGui.QDesktopServices.openUrl(QUrl(self._current_version_url))
 
     def open_game_connection_window(self):
         from randovania.gui.widgets.game_connection_window import GameConnectionWindow
@@ -609,7 +609,7 @@ class MainWindow(WindowManager, BackgroundTaskMixin, Ui_MainWindow):
         )
         self.menu_action_generate_in_another_process.setChecked(self._options.advanced_generate_in_another_process)
         self.menu_action_dark_mode.setChecked(self._options.dark_mode)
-        self.menu_action_show_multiworld_banner.setChecked(self._options.show_multiworld_banner)
+        # self.menu_action_show_multiworld_banner.setChecked(self._options.show_multiworld_banner)
         self.menu_action_experimental_settings.setChecked(self._options.experimental_settings)
         self.menu_action_audible_generation_alert.setChecked(self._options.audible_generation_alert)
         self.menu_action_visual_generation_alert.setChecked(self._options.visual_generation_alert)
@@ -784,11 +784,11 @@ class MainWindow(WindowManager, BackgroundTaskMixin, Ui_MainWindow):
         with self._options as options:
             options.dark_mode = self.menu_action_dark_mode.isChecked()
 
-    def _on_menu_action_show_multiworld_banner(self) -> None:
-        banner_val = self.menu_action_show_multiworld_banner.isChecked()
-        monitoring.metrics.incr("gui_multiworld_banner_option_" + ("checked" if banner_val else "unchecked"))
-        with self._options as options:
-            options.show_multiworld_banner = banner_val
+    # def _on_menu_action_show_multiworld_banner(self) -> None:
+    #     banner_val = self.menu_action_show_multiworld_banner.isChecked()
+    #     monitoring.metrics.incr("gui_multiworld_banner_option_" + ("checked" if banner_val else "unchecked"))
+    #     with self._options as options:
+    #         options.show_multiworld_banner = banner_val
 
     def _on_menu_action_experimental_settings(self):
         with self._options as options:
@@ -832,7 +832,7 @@ class MainWindow(WindowManager, BackgroundTaskMixin, Ui_MainWindow):
 
     def setup_welcome_text(self):
         self.intro_label.setText(self.intro_label.text().format(version=VERSION))
-        self.intro_welcome_label.setText(get_readme_section("WELCOME"))
+        # self.intro_welcome_label.setText(get_readme_section("WELCOME"))
 
     def _create_generic_window(self, widget: QtWidgets.QWidget, title: str | None = None) -> QtWidgets.QMainWindow:
         window = QtWidgets.QMainWindow()

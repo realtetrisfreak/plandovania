@@ -13,8 +13,11 @@ def create_box_for_exception(val: Exception) -> QtWidgets.QMessageBox:
         "An exception was raised",
         (
             f"An unhandled Exception occurred:\n{val}\n\n"
-            "When reporting, make sure to paste the entire contents of the following box."
-            "\nIt has already been copied to your clipboard."
+            "Check to make sure you have listed valid transports and starting location,"
+            "\nthat you don't have a invalid items in your starting items/pickup slots, and that"
+            "\nyou have 99 of each item under \"shuffled.\""
+            # "When reporting, make sure to paste the entire contents of the following box."
+            # "\nIt has already been copied to your clipboard."
         ),
         QtWidgets.QMessageBox.Ok,
     )
@@ -29,7 +32,7 @@ def create_box_for_exception(val: Exception) -> QtWidgets.QMessageBox:
 
     box.setDetailedText(detailed_exception)
 
-    common_qt_lib.set_clipboard(detailed_exception)
+    # common_qt_lib.set_clipboard(detailed_exception)
 
     # Expand the detailed text
     for button in box.buttons():

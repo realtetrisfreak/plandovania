@@ -86,7 +86,8 @@ exporters = [
     "factorio-randovania-mod>=0.8.0",
 
     # Metroid Dread
-    "open-dread-rando>=2.16.0",
+    # "open-dread-rando>=2.16.0",
+    "open-dread-rando",
 
     # Metroid fusion
     "mars-patcher>=0.5.0",
@@ -372,3 +373,7 @@ cache-keys = [
     { file = "randovania/version_hash.py" },
     { file = "randovania/data/README.md" },
 ]
+
+[tool.uv.sources.open-dread-rando]
+git = "https://github.com/realtetrisfreak/open-dread-rando.git"
+branch = "experiment/plandovania-odr"

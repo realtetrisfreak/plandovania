@@ -88,6 +88,7 @@ def get_configuration() -> dict:
 
 
 def setup_logging(default_level: str, log_to_file: Path | None, quiet: bool = False) -> None:
+    # log_to_file = None
     import logging.config
     import logging.handlers
     import time

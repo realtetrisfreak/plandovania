@@ -22,8 +22,7 @@ class ReportingOptOutWidget(QtWidgets.QWidget, Ui_ReportingOptOutWidget):
 
         if randovania.is_dev_version():
             self.intro_label.setText(
-                self.intro_label.text() + "\n\nTo help with the beta testing process, "
-                "these settings are always enabled in dev builds."
+                self.intro_label.text() + "\n\nThese settings are disabled in Plandovania."
             )
             self.allow_reports_check.setEnabled(False)
             self.include_user_check.setEnabled(False)
@@ -33,8 +32,8 @@ class ReportingOptOutWidget(QtWidgets.QWidget, Ui_ReportingOptOutWidget):
 
     def on_options_changed(self, options: Options):
         self.options = options
-        self.allow_reports_check.setChecked(options.allow_crash_reporting or randovania.is_dev_version())
-        self.include_user_check.setChecked(options.use_user_for_crash_reporting or randovania.is_dev_version())
+        self.allow_reports_check.setChecked(options.allow_crash_reporting)
+        self.include_user_check.setChecked(options.use_user_for_crash_reporting)
 
     def _on_allow_reports(self, value: bool):
         with self.options as opt:

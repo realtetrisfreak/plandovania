@@ -23,7 +23,7 @@ if TYPE_CHECKING:
 T = TypeVar("T")
 
 
-def identity(v: T) -> T:
+def identity[T](v: T) -> T:
     return v
 
 
@@ -377,11 +377,11 @@ class Options:
 
     @property
     def game_history_path(self) -> Path:
-        return self._data_dir.joinpath("game_history")
+        return self._data_dir.joinpath("game_history_modded")
 
     @property
     def logs_path(self) -> Path:
-        return self._data_dir.joinpath("logs")
+        return self._data_dir.joinpath("logs_modded")
 
     @property
     def data_dir(self) -> Path:
@@ -461,7 +461,7 @@ class Options:
 
     @property
     def allow_crash_reporting(self) -> bool:
-        return _return_with_default(self._allow_crash_reporting, lambda: True)
+        return _return_with_default(self._allow_crash_reporting, lambda: False)
 
     @allow_crash_reporting.setter
     def allow_crash_reporting(self, value: bool):

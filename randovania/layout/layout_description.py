@@ -88,6 +88,9 @@ class LayoutDescription:
     all_patches: dict[int, GamePatches]
     item_order: tuple[str, ...]
     user_modified: bool
+    rdvgame_info_hash: str | None = None
+    rdvgame_info_word_hash: str | None = None
+    rdvgame_presets_description: str | None = None
 
     def __post_init__(self) -> None:
         object.__setattr__(self, "__cached_serialized_patches", None)
@@ -168,6 +171,9 @@ class LayoutDescription:
             all_patches=all_patches,
             item_order=json_dict["item_order"],
             user_modified=expected_checksum != actual_checksum,
+            rdvgame_info_hash=json_dict["info"].get("hash"),
+            rdvgame_info_word_hash=json_dict["info"].get("word_hash"),
+            rdvgame_presets_description=json_dict["info"]["presets"][0]["description"],
         )
 
     @classmethod
@@ -268,6 +274,18 @@ class LayoutDescription:
     @property
     def all_games(self) -> frozenset[RandovaniaGame]:
         return frozenset(preset.game for preset in self.all_presets)
+
+    @property
+    def hash_str(self) -> str:
+        return self.rdvgame_info_hash
+
+    @property
+    def word_hash_str(self) -> str:
+        return self.rdvgame_info_word_hash
+
+    @property
+    def description_str(self) -> str:
+        return self.rdvgame_presets_description
 
     @property
     def shareable_hash_bytes(self) -> bytes:

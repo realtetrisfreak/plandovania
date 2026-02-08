@@ -80,42 +80,42 @@ async def show_main_window(
     multiworld_client: MultiworldClient = app.multiworld_client
 
     async def attempt_login():
-        from randovania.gui.lib import async_dialog
-        from randovania.network_client.network_client import UnableToConnect
+        # from randovania.gui.lib import async_dialog
+        # from randovania.network_client.network_client import UnableToConnect
 
-        try:
-            if not await network_client.ensure_logged_in(None):
-                await async_dialog.warning(None, "Login required", "Logging in is required to use dev builds.")
-                return False
+        # try:
+        #     if not await network_client.ensure_logged_in(None):
+        #         await async_dialog.warning(None, "Login required", "Logging in is required to use dev builds.")
+        #         return False
 
-        except UnableToConnect as e:
-            s = e.reason.replace("\n", "<br />")
-            await async_dialog.warning(
-                None,
-                "Connection Error",
-                f"<b>Unable to connect to the server:</b><br /><br />{s}<br /><br />"
-                f"Logging in is required to use dev builds.",
-            )
-            return False
+        # except UnableToConnect as e:
+        #     s = e.reason.replace("\n", "<br />")
+        #     await async_dialog.warning(
+        #         None,
+        #         "Connection Error",
+        #         f"<b>Unable to connect to the server:</b><br /><br />{s}<br /><br />"
+        #         f"Logging in is required to use dev builds.",
+        #     )
+        #     return False
 
         return True
 
-    if randovania.is_frozen() and randovania.is_dev_version():
-        try:
-            logger.info("Disabling quit on last window closed")
-            app.setQuitOnLastWindowClosed(False)
-            if not await attempt_login():
-                app.quit()
-                return
-            logger.info("Logged in as %s", network_client.current_user)
+    # if randovania.is_frozen() and randovania.is_dev_version():
+    #     try:
+    #         logger.info("Disabling quit on last window closed")
+    #         app.setQuitOnLastWindowClosed(False)
+    #         if not await attempt_login():
+    #             app.quit()
+    #             return
+    #         logger.info("Logged in as %s", network_client.current_user)
 
-        finally:
+    #     finally:
 
-            def reset_last_window_quit():
-                logger.info("Re-enabling quit on last window closed")
-                app.setQuitOnLastWindowClosed(True)
+    #         def reset_last_window_quit():
+    #             logger.info("Re-enabling quit on last window closed")
+    #             app.setQuitOnLastWindowClosed(True)
 
-            QtCore.QTimer.singleShot(1000, reset_last_window_quit)
+    #         QtCore.QTimer.singleShot(1000, reset_last_window_quit)
 
     from randovania.gui.main_window import MainWindow
 
@@ -133,7 +133,7 @@ async def show_main_window(
 
     logger.info("Displaying main window")
     main_window.show()
-    await main_window.request_new_data()
+    # await main_window.request_new_data()
 
 
 async def show_tracker(app: QtWidgets.QApplication, options):
@@ -228,7 +228,7 @@ async def _load_options(args: argparse.Namespace) -> Options | None:
 
 def start_logger(data_dir: Path, is_preview: bool) -> None:
     # Ensure the log dir exists early on
-    log_dir = data_dir.joinpath("logs", randovania.VERSION)
+    log_dir = data_dir.joinpath("logs_modded", randovania.VERSION)
     log_dir.mkdir(parents=True, exist_ok=True)
 
     randovania.setup_logging("DEBUG" if is_preview else "INFO", log_dir.joinpath("logger.log"))
@@ -264,22 +264,22 @@ async def qt_main(app: QtWidgets.QApplication, args: argparse.Namespace) -> None
 
     import randovania
 
-    if options.allow_crash_reporting or randovania.is_dev_version():
-        import randovania.monitoring
+    # if options.allow_crash_reporting or randovania.is_dev_version():
+    #     import randovania.monitoring
 
-        randovania.monitoring.client_init()
+    #     randovania.monitoring.client_init()
 
     app.network_client = None
     logging.info("Loading server client...")
     from randovania.gui.lib.qt_network_client import QtNetworkClient
 
     app.network_client = QtNetworkClient(options.data_dir)
-    app.network_client.allow_reporting_username = options.use_user_for_crash_reporting
+    # app.network_client.allow_reporting_username = options.use_user_for_crash_reporting
     logging.info("Server client ready.")
 
-    if args.login_as_guest:
-        logging.info("Logging as %s", args.login_as_guest)
-        await app.network_client.login_as_guest(args.login_as_guest)
+    # if args.login_as_guest:
+    #     logging.info("Logging as %s", args.login_as_guest)
+    #     await app.network_client.login_as_guest(args.login_as_guest)
 
     logging.info("Creating the world database")
     from randovania.interface_common.world_database import WorldDatabase
@@ -304,7 +304,7 @@ async def qt_main(app: QtWidgets.QApplication, args: argparse.Namespace) -> None
     @qasync.asyncClose
     async def _on_last_window_closed():
         if app.quitOnLastWindowClosed():
-            await app.network_client.disconnect_from_server()
+            # await app.network_client.disconnect_from_server()
             await app.game_connection.stop()
             logger.info("Last QT window closed")
         else:

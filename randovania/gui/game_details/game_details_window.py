@@ -286,10 +286,10 @@ class GameDetailsWindow(CloseEventWidget, Ui_GameDetailsWindow, BackgroundTaskMi
         ingame_hash_str = f"In-game Hash: {ingame_hash}<br/>" if ingame_hash is not None else ""
         title_text = f"""
         <p>
-            Generated with Randovania {description.randovania_version_text}<br />
-            Seed Hash: {description.shareable_word_hash} ({description.shareable_hash})<br/>
-            {ingame_hash_str}
-            Preset Name: {preset.name}
+            Title: {preset.name}<br/>
+            Author: {description.hash_str}<br/>
+            Difficulty: {description.word_hash_str}<br/>
+            Scan Log: {description.description_str}
         </p>
         """
         self.layout_title_label.setText(title_text)
