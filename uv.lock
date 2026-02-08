@@ -1,5 +1,5 @@
 version = 1
-revision = 2
+revision = 3
 requires-python = ">=3.12"
 resolution-markers = [
     "python_full_version >= '3.13'",
@@ -96,14 +96,14 @@ wheels = [
 
 [[package]]
 name = "am2r-yams"
-version = "2.8.2"
+version = "2.8.4"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "pythonnet" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/57/58/30cd7579e581af98c26c1534b4632f66bd4776a7159c29ff9b92477a49c6/am2r_yams-2.8.2.tar.gz", hash = "sha256:e6357405cd147a5714df24b2b60b509712296fca10a27945a9bc64873f86fe12", size = 2148844, upload-time = "2025-06-20T21:13:22.364Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/a8/d8/04764b054298048ad9ffbf06dc40b81e594df8909ceaf4dd14e200098531/am2r_yams-2.8.4.tar.gz", hash = "sha256:31a1e8a5d096ddfc760c8ee595b6d17c1464dda009893ae8426626eb10001c60", size = 2146488, upload-time = "2025-10-20T19:54:39.974Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/b8/97/3dc6fa29bc2b506cf33dc9d62f8833403670969641da06aa29e0a8eda351/am2r_yams-2.8.2-py3-none-any.whl", hash = "sha256:1911e4976cf6f6f5d07aca45d36ff0809950ea5b56243326ddbc12d9a98b9e8c", size = 2142629, upload-time = "2025-06-20T21:13:20.394Z" },
+    { url = "https://files.pythonhosted.org/packages/0d/e3/7a8acde6687d450299bd985715f689f7948657068a4da8f44017ee1a36dd/am2r_yams-2.8.4-py3-none-any.whl", hash = "sha256:84974262af6a3000bd591561af0f42720b19c7d352eabaa9d2655553d201ea08", size = 2139564, upload-time = "2025-10-20T19:54:37.96Z" },
 ]
 
 [[package]]
