@@ -1,5 +1,5 @@
 version = 1
-revision = 2
+revision = 3
 requires-python = ">=3.12"
 resolution-markers = [
     "python_full_version >= '3.13'",
@@ -1265,16 +1265,12 @@ wheels = [
 
 [[package]]
 name = "open-dread-rando"
-version = "2.16.0"
-source = { registry = "https://pypi.org/simple" }
+version = "0.1.dev819"
+source = { git = "https://github.com/realtetrisfreak/open-dread-rando.git?branch=experiment%2Fplandovania-odr#34560886dd9e0faf223e0f3d427b71b1d86b0695" }
 dependencies = [
     { name = "json-delta" },
     { name = "jsonschema" },
     { name = "mercury-engine-data-structures" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/5c/0d/cbceff66b5b330e69f7259838f8270904a5b73d27680b95e2be57b2abe92/open_dread_rando-2.16.0.tar.gz", hash = "sha256:fea14c81e3a5c57583943600cc117989cd6c524ee56c2acb82954c9c2df8c2fe", size = 3509705, upload-time = "2025-01-17T19:19:04.463Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/15/61/b1c4b0c612c82643a0b49ba8bb4e450933c40802c584dfb3b025c814a5af/open_dread_rando-2.16.0-py3-none-any.whl", hash = "sha256:3abcc2c05990c994547e23ba80efb99d0eaba2005c2bfbe4c5a02ebd56420fcf", size = 3536080, upload-time = "2025-01-17T19:19:02.225Z" },
 ]
 
 [[package]]
@@ -2048,7 +2044,7 @@ requires-dist = [
     { name = "natsort", marker = "extra == 'gui'" },
     { name = "networkx" },
     { name = "nod", marker = "extra == 'gui'", specifier = ">=1.9" },
-    { name = "open-dread-rando", marker = "extra == 'exporters'", specifier = ">=2.16.0" },
+    { name = "open-dread-rando", marker = "extra == 'exporters'", git = "https://github.com/realtetrisfreak/open-dread-rando.git?branch=experiment%2Fplandovania-odr" },
     { name = "open-prime-rando", marker = "extra == 'exporters'", specifier = ">=0.13.0" },
     { name = "open-samus-returns-rando", marker = "extra == 'exporters'", specifier = ">=3.2.0" },
     { name = "packaging" },
