@@ -13,7 +13,7 @@ Plandovania is an unofficial variant of Randovania, and it isn't affiliated or e
 
 1. Download [Plandovania.7z](https://github.com/realtetrisfreak/plandovania/releases/download/v1.0/plandovania-9.4.0.dev2-windows.7z), extract the zip, and run plandovania.exe.
 
-2. After Plandovania starts, drag-and-drop your `.rdvgame` file into Plandovania or click "Import game file," and follow the on-screen instructions.
+2. After Plandovania starts, drag-and-drop your `.rdvgame` file into Plandovania or click "Import game file," and follow the on-screen instructions. [Download the Plandos by clicking here](https://drive.google.com/drive/folders/1lpuuxUdn2fvmjOxZuKW3_arWSJ8KwIjd?usp=drive_link) (google drive link).
 
 3. Export your mod, then load your game on your modded Switch or your emulator. If using an emulator, make sure your mod is "enabled" or "active" for Metroid Dread.
 
