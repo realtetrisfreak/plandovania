@@ -292,13 +292,13 @@
      </property>
     </spacer>
    </item>
-   <!-- <item row="9" column="0">
+   <item row="9" column="0">
     <widget class="QCheckBox" name="auto_save_spoiler_check">
      <property name="text">
       <string>Include a spoiler log on same directory</string>
      </property>
     </widget>
-   </item> -->
+   </item>
    <item row="10" column="0">
     <widget class="QPushButton" name="accept_button">
      <property name="text">
