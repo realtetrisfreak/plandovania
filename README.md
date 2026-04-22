@@ -1,6 +1,144 @@
 # Important
-This fork contains an experimental branch that isn't affiliated with or endorsed by Randovania.
-Experimental branch is intended for use in [Plandovania](https://github.com/realtetrisfreak/plandovania/).
+Plandovania is an unofficial variant of Randovania, and it isn't affiliated or endorsed by Randovania. It contains an experimental branch intended only for use with Plandovania.
+
+### Table of Contents
+
+1. [How to use on Windows](#how-to-use-windows)
+2. [About Plandovania](#about-plandovania)
+3. [Troubleshooting on Switch - FAQ](#troubleshooting-on-switch-faq)
+4. [Running from source - for Developers](#running-from-source-windows)
+5. [Readme for Randovania](#randovania)
+
+# How to Use (Windows)
+
+1. Download [Plandovania.7z](https://github.com/realtetrisfreak/plandovania/releases/download/v1.0/plandovania-9.4.0.dev2-windows.7z), extract the zip, and run plandovania.exe.
+
+2. After Plandovania starts, drag-and-drop your `.rdvgame` file into Plandovania or click "Import game file," and follow the on-screen instructions. [Download the Plandos by clicking here](https://drive.google.com/drive/folders/1lpuuxUdn2fvmjOxZuKW3_arWSJ8KwIjd?usp=drive_link) (google drive link).
+
+3. Export your mod, then load your game on your modded Switch or your emulator. If using an emulator, make sure your mod is "enabled" or "active" for Metroid Dread.
+
+For more information, see [Troubleshooting](#troubleshooting-on-switch-faq) below.
+
+### Prerequisites
+
+Plandovania assumes you have either a modded Switch with Atmosphère, or an emulator setup.
+
+For Plandovania to work, you need an extracted filesystem (romFS) of Metroid Dread. A romFS extraction can be done via an emulator (after you dump your game), command-line tools, or via your modded Switch.
+
+# About Plandovania
+
+## What is this project?
+
+Randovania is a randomizer which works across multiple games. It will read a game's files, and then automatically create a patch to be used with the game. You can randomize the locations of items, or where your game's transports connect to between worlds, for example. This process is handled mostly by the computer.
+
+Plandovania is an unofficial variant of Randovania. It is used for patching Metroid Dread, and it has changes allowing for better manual control over the game. As such, **Plandovania files are incompatible with Randovania**. The reverse is also true, Randovania's files are incompatible with Plandovania.
+
+## Why does this project exist?
+
+Plandovania combines the frontend of Randovania with a modified backend (`open-dread-rando`) to offer more manual control over changing Metroid Dread.
+
+Randovania contains several game patchers inside it, which are responsible for the actual patching of each of the games.
+
+Randovania has a good built-in user-interface for the setting up and exporting of mods and patches. However, `open-dread-rando`, the game patcher for Metroid Dread, didn't have the features I wanted to create custom versions of Metroid Dread. So I combined the two: a custom game patcher for Metroid Dread, and a pleasant user-experience with Randovania.
+
+## Overview of major changes
+
+#### Plandovania
+
+- Information about the mod will be displayed in the export window: Name, Author, Difficulty, and Description.
+- Slightly-streamlined import and export process
+
+#### Metroid Dread
+
+- Removes a load-in sequence which would load every unvisited area when traveling to Itorash for the first time, causing excessive load times, each area's music to play and spoil itself, and the game to crash if Dairon hadn't yet been visited.
+- Removes "split beam" weapons from the game, a custom change which affected how Samus's beam weapons would work, different from the vanilla experience. "Split beams" would cause Samus to be unable to fire her weapon after receiving a beam weapon upgrade from EMMI, which would fix itself after a reload to checkpoint, but would add unecessary loading times, disrupting the game's flow; in some cases, the beam would change to some other beam when firing it (no more "thin beam" while you have the Wide Beam), causing other disruption; and fan-modded pickups wouldn't properly grant or remove beam weapons on pickup, limiting the kinds of upgrade pathways.
+- Resets Dairon's EMMI to no longer roam the area before you get there. I would like there to be a toggle for this, but the vanilla cutscene and activation trigger have been restored. This offers a little more creative freedom in how EMMI is approached in Dairon than before.
+- Restores the "Credits" option to the main menu for completed game save files, and removes item locations from being shown in the game's credits. Prior to this change, you could select a completed game save for a different playthrough, and spoil the item locations for the current one (because you only can have one mod active at a time). Now, the game's credits are preserved on the main menu, and can be seen from any completed game save without fear of spoiling the items if you don't want to see them.
+
+---
+
+# Troubleshooting on Switch (FAQ)
+
+### I'm using Atmosphère. Where do I put my game files?
+
+Randovania offers an option to automatically place your files onto your Switch SD card after you insert your SD card into your computer, or via Wi-fi using an FTP connection.
+
+To manually transfer your files, select  "Custom path" on the "Atmosphère (Modded Switch)" option in the Game Patching window in Randovania. When you go to export, two folders will be created: `contents` and `exefs_patches`. Move or copy both folders from your computer to the `atmosphere` folder on your Switch SD card.
+
+Your folder structure on your Switch SD card should look like this afterward:
+
+- `atmosphere\contents`
+- `atmosphere\exefs_patches`
+
+### I checked the "Use path compatible for SimpleModManager" checkbox in Randovania, and now I can't find my game in SimpleModManager. Which one is it?
+
+Your game name can be found in the title bar of the Game Details window, after you import an `.rdvgame` file.
+
+![Image of the Game Details window after importing an .rdvgame file](game_details.png "After you import an .rdvgame file, check the title bar at the top")
+
+In this example, a folder named "Randovania Seaslug Nailugger Sclawk" would be created.
+
+---
+# Running from source (Windows)
+
+**NOTE:** This section is mainly for developers who want to convert Windows instructions to run Plandovania from source on Linux or a Mac.
+
+### Overview
+
+1. Clone this git repository
+2. Checkout branch `experiment/plandovania-rdv`
+3. Modify the `pyproject.toml` file in the root directory. Change `setuptools>=64` to `setuptools==79.0.1` (newer versions break the install).
+4. Run `.\tools\prepare_virtual_env.bat --full`
+5. To run Plandovania, navigate to `\.venv\Scripts` and run `python -m randovania gui main`
+
+### Prerequisites
+
+1. Install [git](https://git-scm.com/install/windows).
+2. Install [python 3.12](https://www.python.org/downloads/release/pymanager-252/) or [here](https://www.python.org/downloads/release/python-31210/) and select the "$PATH" option checkbox in the installer window.
+
+\*This may override existing installs of python and cause errors with your existing python projects. To fix this, run the python installer again (should work).
+
+Randovania will also install the latest version of astral uv, a package manager for python.
+but any version published late-2025 early-2026 should work.
+If in doubt, try version `0.10.3` or `0.9.17`.
+
+Check uv version by running (in CMD prompt):
+
+`uv -V`  
+or  
+`uv --version`
+
+Should be at least 0.9.x.
+
+## Step-by-step
+
+After installing [git](https://git-scm.com/install/windows) and [python 3.12](https://www.python.org/downloads/release/pymanager-252/), ~~download and run this .bat file~~ see below, the install script is broken because a dependency updated, causing a breaking change.
+
+Run these commands manually in sequence in a CMD prompt window (inside the folder where you want Plandovania to be installed) (copy and paste each line).
+
+1. `git clone https://github.com/realtetrisfreak/plandovania.git`
+2. `cd .\plandovania`
+3. `git checkout experiment/plandovania-rdv`
+4. Unfortunately, at this point, the `pyproject.toml` is broken. A dependency updated and broke the install script, but also, there are a lot dependencies. So, instead of updating the `pyproject.toml` each time, I decided to write the solution here for future troubleshooting: Open `pyproject.toml` in the root of the `plandovania` folder, and at the top, change the line `"setuptools>=64",` (change the `>=` to `==` and change the version number `64` to `79.0.1`) to read `"setuptools==79.0.1",` and save and close the document. Run this next line inside the command prompt from earlier.
+6. `.\tools\prepare_virtual_env.bat --full`
+7. At this point, Plandovania should be installed. Keep running the next two lines.
+8. `cd .\.venv\Scripts`
+9. `python -m randovania gui main`
+
+You can start Plandovania again by starting a CMD prompt inside the `plandovania` folder, and running these two commands.
+1. `cd .\.venv\Scripts`
+2. `python -m randovania gui main`
+
+Or, create a .bat file outside the folder with the following text, and run it:
+
+```
+cd .\plandovania\.venv\Scripts
+python -m randovania gui main
+```
+
+---
+
+The readme for Randovania can be found below.
 
 ---
 
