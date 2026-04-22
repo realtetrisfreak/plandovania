@@ -314,7 +314,7 @@ class DreadGameExportDialog(GameExportDialog[DreadConfiguration], Ui_DreadGameEx
 
     @property
     def auto_save_spoiler(self) -> bool:
-        # return self.auto_save_spoiler_check.isChecked()
+        return self.auto_save_spoiler_check.isChecked()
         return False
 
     @property
